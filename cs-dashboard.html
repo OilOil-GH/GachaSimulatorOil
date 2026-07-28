@@ -3055,30 +3055,52 @@ function renderShiftFloatBar(){
       <button onclick="closeOSTicketLogin()" style="border:none;background:none;font-size:18px;color:#94a3b8;cursor:pointer;line-height:1">✕</button>
     </div>
 
-    <!-- IPA (SSO) Section -->
-    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px">
-      <div style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">IPA (SSO)</div>
-      <input id="otIpaUser" type="text" placeholder="Username" autocomplete="username"
-        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;margin-bottom:7px;outline:none;background:#fff"
-        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'">
-      <input id="otIpaPass" type="password" placeholder="Password" autocomplete="current-password"
-        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;margin-bottom:7px;outline:none;background:#fff"
-        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'">
-      <input id="otIpaOtp" type="text" inputmode="numeric" maxlength="6" placeholder="OTP 6 หลัก"
-        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:15px;box-sizing:border-box;outline:none;background:#fff;letter-spacing:6px;font-weight:700;text-align:center"
-        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'"
-        oninput="this.value=this.value.replace(/\D/g,'').slice(0,6)">
+    <div style="font-size:11px;color:#94a3b8;margin-bottom:14px;line-height:1.6">
+      TR/WarZ กับ Cabal เป็นคนละแอคเคาท์ — กรอกและกดเข้าสู่ระบบ<b> ทีละระบบ (2 รอบ)</b>
     </div>
 
-    <!-- OSTicket Account Section -->
-    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:12px">
-      <div style="font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">บัญชี OSTicket</div>
-      <input id="otAccUser" type="text" placeholder="Username" autocomplete="username"
+    <!-- ═══ Account 1: HoF (TR/WarZ) ═══ -->
+    <div style="border:1.5px solid #c7d2fe;border-radius:12px;padding:14px 16px;margin-bottom:12px;background:#f5f7ff">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#4338ca">① HoF · TR / WarZ</div>
+        <span id="otHofStatus" style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#e0e7ff;color:#4338ca">ยังไม่เข้าสู่ระบบ</span>
+      </div>
+      <input id="otHofUser" type="text" placeholder="IPA Username (HoF)" autocomplete="off"
         style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;margin-bottom:7px;outline:none;background:#fff"
         onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'">
-      <input id="otAccPass" type="password" placeholder="Password" autocomplete="current-password"
-        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;outline:none;background:#fff"
+      <input id="otHofPass" type="password" placeholder="Password" autocomplete="off"
+        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;margin-bottom:7px;outline:none;background:#fff"
         onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'">
+      <input id="otHofOtp" type="text" inputmode="numeric" maxlength="6" placeholder="OTP 6 หลัก"
+        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:9px;outline:none;background:#fff;letter-spacing:6px;font-weight:700;text-align:center"
+        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'"
+        oninput="this.value=this.value.replace(/\D/g,'').slice(0,6)">
+      <button onclick="unifiedLogin('hof')"
+        style="width:100%;padding:10px;border:none;border-radius:8px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:13px;font-weight:700;cursor:pointer">
+        เข้าสู่ระบบ HoF (TR/WarZ)
+      </button>
+    </div>
+
+    <!-- ═══ Account 2: Cabal (CBM/CBPc) ═══ -->
+    <div style="border:1.5px solid #fcd34d;border-radius:12px;padding:14px 16px;margin-bottom:12px;background:#fffbeb">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#b45309">② Cabal · CabalMobile / CabalPC</div>
+        <span id="otCabStatus" style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#fef3c7;color:#b45309">ยังไม่เข้าสู่ระบบ</span>
+      </div>
+      <input id="otCabUser" type="text" placeholder="IPA Username (Cabal)" autocomplete="off"
+        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;margin-bottom:7px;outline:none;background:#fff"
+        onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#e2e8f0'">
+      <input id="otCabPass" type="password" placeholder="Password" autocomplete="off"
+        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;box-sizing:border-box;margin-bottom:7px;outline:none;background:#fff"
+        onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#e2e8f0'">
+      <input id="otCabOtp" type="text" inputmode="numeric" maxlength="6" placeholder="OTP 6 หลัก"
+        style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:9px;outline:none;background:#fff;letter-spacing:6px;font-weight:700;text-align:center"
+        onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#e2e8f0'"
+        oninput="this.value=this.value.replace(/\D/g,'').slice(0,6)">
+      <button onclick="unifiedLogin('cabal')"
+        style="width:100%;padding:10px;border:none;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:13px;font-weight:700;cursor:pointer">
+        เข้าสู่ระบบ Cabal
+      </button>
     </div>
 
     <!-- Remember checkbox -->
@@ -3086,22 +3108,6 @@ function renderShiftFloatBar(){
       <input type="checkbox" id="otRemember" style="width:14px;height:14px;accent-color:#6366f1;flex-shrink:0">
       จำข้อมูลเข้าสู่ระบบ (บันทึกในเครื่อง)
     </label>
-
-    <!-- Login Buttons -->
-    <button onclick="unifiedLogin('both')"
-      style="width:100%;padding:12px;border:none;border-radius:9px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;letter-spacing:.01em">
-      🔓 เข้าสู่ระบบทั้งหมด (TR/WarZ + Cabal)
-    </button>
-    <div style="display:flex;gap:8px;margin-bottom:12px">
-      <button onclick="unifiedLogin('hof')"
-        style="flex:1;padding:9px;border:1.5px solid #a5b4fc;border-radius:8px;background:#eef2ff;color:#4338ca;font-size:12px;font-weight:600;cursor:pointer">
-        เฉพาะ HoF (TR/WarZ)
-      </button>
-      <button onclick="unifiedLogin('cabal')"
-        style="flex:1;padding:9px;border:1.5px solid #fcd34d;border-radius:8px;background:#fffbeb;color:#b45309;font-size:12px;font-weight:600;cursor:pointer">
-        เฉพาะ Cabal
-      </button>
-    </div>
 
     <!-- Cancel -->
     <button onclick="closeOSTicketLogin()" style="width:100%;padding:9px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;font-size:12px;font-weight:600;color:#64748b;cursor:pointer">
@@ -3177,59 +3183,59 @@ function switchOTTab(tab) {
 }
 let _otConnected = false;
 
+// map target → field ids + status element
+const OT_FIELDS = {
+  hof:   { user:'otHofUser', pass:'otHofPass', otp:'otHofOtp', status:'otHofStatus' },
+  cabal: { user:'otCabUser', pass:'otCabPass', otp:'otCabOtp', status:'otCabStatus' },
+};
+
 async function openOSTicketLogin() {
-  // ถ้าเชื่อมแล้ว → force sync แทนเปิด modal ใหม่
-  if (_otConnected) { forceOSTicketSync(); return; }
-  // Pre-fill saved credentials ถ้ามี
+  // เปิด modal เสมอ (รองรับ login 2 รอบ — HoF แล้วค่อย Cabal)
+  // Pre-fill saved credentials ถ้ามี (แยก HoF / Cabal)
   try {
     const r = await fetch(OT_API + '/api/scraper/saved-username');
     const d = await r.json();
-    if (d.username) {
-      document.getElementById('otIpaUser').value = d.username;
-      document.getElementById('otRemember').checked = true;
-    }
-    if (d.ostUsername) document.getElementById('otAccUser').value = d.ostUsername;
+    if (d.hofUsername)   document.getElementById('otHofUser').value = d.hofUsername;
+    if (d.cabalUsername) document.getElementById('otCabUser').value = d.cabalUsername;
+    if (d.hofUsername || d.cabalUsername) document.getElementById('otRemember').checked = true;
   } catch(e) {}
-  // Focus OTP field ถ้า username บันทึกไว้แล้ว
-  const modal = document.getElementById('osticketLoginModal');
-  modal.style.display = 'flex';
-  const ipaUser = document.getElementById('otIpaUser').value;
+  document.getElementById('osticketLoginModal').style.display = 'flex';
   setTimeout(() => {
-    if (ipaUser) document.getElementById('otIpaOtp').focus();
-    else document.getElementById('otIpaUser').focus();
+    const hofU = document.getElementById('otHofUser').value;
+    document.getElementById(hofU ? 'otHofOtp' : 'otHofUser').focus();
   }, 80);
 }
 
-// ── Unified Login ─────────────────────────────────────────────
+// ── Unified Login (ต่อ instance) ──────────────────────────────
 async function unifiedLogin(target) {
-  const ipaUser = document.getElementById('otIpaUser').value.trim();
-  const ipaPass = document.getElementById('otIpaPass').value;
-  const ipaOtp  = document.getElementById('otIpaOtp').value.trim();
-  const ostUser = document.getElementById('otAccUser').value.trim();
-  const ostPass = document.getElementById('otAccPass').value;
+  const f = OT_FIELDS[target] || OT_FIELDS.hof;
+  const user = document.getElementById(f.user).value.trim();
+  const pass = document.getElementById(f.pass).value;
+  const otp  = document.getElementById(f.otp).value.trim();
   const remember = document.getElementById('otRemember').checked;
 
-  if (!ipaUser || !ipaPass) {
-    document.getElementById('otIpaUser').style.borderColor = '#ef4444';
-    document.getElementById('otIpaPass').style.borderColor = ipaPass ? '#e2e8f0' : '#ef4444';
+  if (!user || !pass) {
+    document.getElementById(f.user).style.borderColor = user ? '#e2e8f0' : '#ef4444';
+    document.getElementById(f.pass).style.borderColor = pass ? '#e2e8f0' : '#ef4444';
     return;
   }
 
-  closeOSTicketLogin();
-  setOSTicketStatus('connecting', 'กำลัง login...');
+  // อัปเดตสถานะในการ์ด
+  const st = document.getElementById(f.status);
+  if (st) { st.textContent = 'กำลังเข้าสู่ระบบ...'; st.style.background = '#fef9c3'; st.style.color = '#a16207'; }
+
+  const label = target === 'cabal' ? 'Cabal' : 'HoF';
+  setOSTicketStatus('connecting', `กำลัง login ${label}...`);
 
   try {
-    // บันทึก credentials ถ้าต้องการ
     if (remember) {
       await fetch(OT_API + '/api/scraper/save-credentials', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: ipaUser, password: ipaPass, ostUsername: ostUser, ostPassword: ostPass }),
+        body: JSON.stringify({ target, username: user, password: pass }),
       }).catch(() => {});
     }
-
-    // เริ่ม scraper
-    const body = { username: ipaUser, password: ipaPass, target };
-    if (ipaOtp) body.otp = ipaOtp;
+    const body = { username: user, password: pass, target };
+    if (otp) body.otp = otp;
 
     const r = await fetch(OT_API + '/api/scraper/start', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -3237,9 +3243,15 @@ async function unifiedLogin(target) {
     });
     const data = await r.json();
     if (data.busy) { setOSTicketStatus('connecting', 'กำลัง scrape อยู่ รอสักครู่...'); startOSTicketPoll(); return; }
-    if (data.error) { setOSTicketStatus('error', data.error); return; }
+    if (data.error) {
+      if (st) { st.textContent = 'ผิดพลาด'; st.style.background = '#fee2e2'; st.style.color = '#dc2626'; }
+      setOSTicketStatus('error', data.error); return;
+    }
+    // สำเร็จ (ส่ง request แล้ว) → อัปเดตการ์ด + ปิด modal หลังหน่วงเล็กน้อยให้เห็นสถานะ
+    if (st) { st.textContent = 'เข้าสู่ระบบแล้ว ✓'; st.style.background = '#dcfce7'; st.style.color = '#15803d'; }
     startOSTicketPoll();
   } catch(e) {
+    if (st) { st.textContent = 'ผิดพลาด'; st.style.background = '#fee2e2'; st.style.color = '#dc2626'; }
     setOSTicketStatus('error', 'Server ไม่ตอบสนอง — รัน start-api.bat ก่อน');
   }
 }
